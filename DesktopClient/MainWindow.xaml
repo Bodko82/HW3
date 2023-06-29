@@ -1,0 +1,44 @@
+﻿<Window x:Class="DesktopClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Client Application" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="serverTextBlock" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <ListBox x:Name="messageListBox" Grid.Row="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding From.Login}" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding To.Login}"/>
+                        <TextBlock Text="{Binding CreatedAt}" FontStyle="Italic"/>
+                        <TextBlock Text="{Binding Text}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <TextBlock Text="Login:" Margin="5"/>
+            <TextBox x:Name="loginTextBox" Width="95" Margin="5"/>
+
+            <Button Content="Get Message Count" Click="GetMessageCount_Click" Margin="5" Width="88"/>
+
+            <Button Content="Get Messages" Click="GetMessages_Click" Margin="5"/>
+
+            <TextBlock Text="To:" Margin="5"/>
+            <TextBox x:Name="toTextBox" Width="108" Margin="5"/>
+
+            <TextBlock Text="Text:" Margin="5"/>
+            <TextBox x:Name="textTextBox" Width="126" Margin="5" PreviewKeyDown="textTextBox_PreviewKeyDown"/>
+
+            <Button Content="Clear" Click="Clear_Click" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Window>
